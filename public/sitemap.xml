@@ -1,39 +1,35 @@
-
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/tags/any/</loc>
+    <loc>https://if001.github.io/github-trending/tags/any/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/categories/</loc>
+    <loc>https://if001.github.io/github-trending/categories/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/github/</loc>
+    <loc>https://if001.github.io/github-trending/tags/github/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/categories/github-trending/</loc>
+    <loc>https://if001.github.io/github-trending/categories/github-trending/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/202606/github-trending-20260630-any-weekly/</loc>
+    <loc>https://if001.github.io/github-trending/posts/202606/github-trending-20260630-any-weekly/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/</loc>
+    <loc>https://if001.github.io/github-trending/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/</loc>
+    <loc>https://if001.github.io/github-trending/posts/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/</loc>
+    <loc>https://if001.github.io/github-trending/tags/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/trending/</loc>
+    <loc>https://if001.github.io/github-trending/tags/trending/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/weekly/</loc>
+    <loc>https://if001.github.io/github-trending/tags/weekly/</loc>
     <lastmod>2026-06-30T08:10:31+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/posts/my-first-post/</loc>
-    <lastmod>2024-01-14T07:07:07+01:00</lastmod>
   </url>
 </urlset>

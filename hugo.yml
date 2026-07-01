@@ -1,8 +1,10 @@
-baseURL: /
+baseURL: https://if001.github.io/github-trending
 title: GitHub Trending Reports
-paginate: 10
-theme: PaperMod
 
+theme: PaperMod
+Language:
+    Direction: "ja"
+    Locale: "ja"
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
@@ -11,6 +13,16 @@ buildExpired: false
 minify:
   disableXML: true
   minifyOutput: true
+
+pagination:
+  disableAliases: false
+  pagerSize: 10
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -35,7 +47,10 @@ params:
   showtoc: true
   tocopen: false
 
-pygmentsUseClasses: true
 markup:
-  highlight:
-    noClasses: false
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        noClasses: false
+pygmentsUseClasses: true

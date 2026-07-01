@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>GitHub Trending Reports</title>
-    <link>//localhost:1313/</link>
+    <link>https://if001.github.io/github-trending/</link>
     <description>Recent content on GitHub Trending Reports</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 30 Jun 2026 08:10:31 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://if001.github.io/github-trending/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitHub Trending 1週間レポート (All) - 2026/06/30</title>
-      <link>//localhost:1313/posts/202606/github-trending-20260630-any-weekly/</link>
+      <link>https://if001.github.io/github-trending/posts/202606/github-trending-20260630-any-weekly/</link>
       <pubDate>Tue, 30 Jun 2026 08:10:31 +0000</pubDate>
-      <guid>//localhost:1313/posts/202606/github-trending-20260630-any-weekly/</guid>
+      <guid>https://if001.github.io/github-trending/posts/202606/github-trending-20260630-any-weekly/</guid>
       <description>&lt;h1 id=&#34;github-trending-レポート&#34;&gt;GitHub Trending レポート&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;取得日時: 2026年6月30日 17:10:31&lt;/li&gt;
@@ -91,13 +91,6 @@
 &lt;h3 id=&#34;1-calesthioopenmontage&#34;&gt;1. &lt;a href=&#34;https://github.com/calesthio/OpenMontage&#34;&gt;calesthio/OpenMontage&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;World&amp;rsquo;s first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>My First Post</title>
-      <link>//localhost:1313/posts/my-first-post/</link>
-      <pubDate>Sun, 14 Jan 2024 07:07:07 +0100</pubDate>
-      <guid>//localhost:1313/posts/my-first-post/</guid>
-      <description>&lt;p&gt;sample&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
