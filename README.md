@@ -2,6 +2,8 @@
 
 GitHub Trending のリポジトリ一覧を取得し、各リポジトリの README を Ollama で4行に要約し、一覧全体の傾向とともに Markdown へ出力する TypeScript スクリプトです。
 
+https://if001.github.io/github-trending/
+
 ## 処理の流れ
 
 1. `https://github.com/trending` または言語別 Trending ページを取得
