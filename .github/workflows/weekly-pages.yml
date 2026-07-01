@@ -1,0 +1,137 @@
+name: Weekly Hugo Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: Script to run before deploying Hugo pages
+        required: true
+        default: run.sh
+        type: choice
+        options:
+          - run.sh
+          - run_other.sh
+  schedule:
+    # 06:00 JST every Saturday
+    - cron: '0 21 * * 5'
+    # 06:00 JST every Sunday
+    - cron: '0 21 * * 6'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      script: ${{ steps.target.outputs.script }}
+
+    steps:
+      - name: Resolve target script
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          REQUESTED_SCRIPT: ${{ github.event.inputs.script || '' }}
+        run: |
+          set -euo pipefail
+
+          script="${REQUESTED_SCRIPT}"
+          if [[ "${EVENT_NAME}" == "schedule" ]]; then
+            case "${EVENT_SCHEDULE}" in
+              "0 21 * * 5") script="run.sh" ;;
+              "0 21 * * 6") script="run_other.sh" ;;
+              *)
+                echo "::error::Unsupported schedule: ${EVENT_SCHEDULE}"
+                exit 1
+                ;;
+            esac
+          fi
+
+          case "${script}" in
+            run.sh|run_other.sh) ;;
+            *)
+              echo "::error::Unsupported script: ${script}"
+              exit 1
+              ;;
+          esac
+
+          echo "script=${script}" >> "${GITHUB_OUTPUT}"
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.146.0'
+          extended: true
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check Ollama settings
+        env:
+          OLLAMA_HOST: ${{ secrets.OLLAMA_HOST }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${OLLAMA_HOST}" ]]; then
+            echo "::error::Repository secret OLLAMA_HOST is required for scheduled runs."
+            exit 1
+          fi
+          curl --fail --silent --show-error "${OLLAMA_HOST%/}/api/tags" >/dev/null
+
+      - name: Generate content
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          OLLAMA_HOST: ${{ secrets.OLLAMA_HOST }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL }}
+        run: bash "${{ steps.target.outputs.script }}"
+
+      - name: Build site
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
