@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-pnpm run trending -- \
+pnpm run trending \
   --language any \
   --date-range week
 
